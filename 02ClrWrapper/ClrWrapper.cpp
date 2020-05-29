@@ -9,7 +9,7 @@ DllExport int ClrWrapper::SetIntValue(int x) {
 	return Class1::SetIntValue(x);
 }
 
-DllExport double ClrWrapper::SetObject(void* x) {
+DllExport double ClrWrapper::SetObject(int t, void* x) {
 
-	return Class1::SetObject(x);
+	return Class1::SetObject(t,x);
 }

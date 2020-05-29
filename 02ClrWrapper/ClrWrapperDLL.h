@@ -5,6 +5,6 @@
 namespace ClrWrapper {
 
 	DllImport int SetIntValue(int x);
-	DllImport double SetObject(void* x);
+	DllImport double SetObject(int t, void* x);
 
 }

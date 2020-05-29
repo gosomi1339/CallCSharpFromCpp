@@ -12,20 +12,20 @@ int main()
 
     {
         int x = 1;
-        double result = ClrWrapper::SetObject(&x);
+        double result = ClrWrapper::SetObject(0, &x);
         std::cout << "Result 2= " << result << std::endl;
     }
 
     {
         double x = 1;
-        double result = ClrWrapper::SetObject(&x);
-        std::cout << "Result 2= " << result << std::endl;
+        double result = ClrWrapper::SetObject(1, &x);
+        std::cout << "Result 3= " << result << std::endl;
     }
 
     {
         std::string x = "1";
-        double result = ClrWrapper::SetObject(&x);
-        std::cout << "Result 2= " << result << std::endl;
+        double result = ClrWrapper::SetObject(2, &x);
+        std::cout << "Result 4= " << result << std::endl;
     }
 
 }

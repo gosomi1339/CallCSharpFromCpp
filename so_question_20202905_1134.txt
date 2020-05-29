@@ -1,0 +1,56 @@
+How do I call a C# static method from C++ where the C# method takes an C# object as parameter?
+
+I have a C++ program that calls a C# method (via a C++/CLR wrapper DLL).
+
+The C# method takes an .NET System.Object as a parameter.
+
+The C++ calls the C# method with either int, double, or std::string (can also be char*)
+
+Below source code extracts. Sample app here https://github.com/gosomi1339/CallCSharpFromCpp
+
+C++ calls C++/CLR DLL
+ 
+	{
+        int x = 1;
+        double result = ClrWrapper::SetObject(&x);
+        std::cout << "Result 2= " << result << std::endl;
+    }
+
+    {
+        double x = 1;
+        double result = ClrWrapper::SetObject(&x);
+        std::cout << "Result 2= " << result << std::endl;
+    }
+
+    {
+        std::string x = "1";
+        double result = ClrWrapper::SetObject(&x);
+        std::cout << "Result 2= " << result << std::endl;
+    }
+	
+The C++/CLR DLL calls a C# static method
+
+	DllExport double ClrWrapper::SetObject(void* x) {
+		return Class1::SetObject(x); //<----- this does not compile
+	}
+	
+The C# static method takes an object as parameter
+
+	public static double SetObject(object o)
+        {
+            if (o is int)
+            {
+                return (int)o + 1;
+            } else if (o is double)
+            {
+                return (double)o + 2.2;
+            } else
+            {
+                return 3.3;
+            }
+        }
+		
+On the C# side I am prepared to us unmanaged / unsafe code.
+
+How do I call the C# method?
+How do I marshal the C++ variable to a C# object?
